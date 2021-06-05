@@ -92,6 +92,7 @@ class TweetBottomSheet {
         ),
         _widgetBottomSheetRow(context, AppIcon.link,
             text: 'Copy link to tweet', isEnable: true, onPressed: () async {
+          Navigator.pop(context);
           var uri = await Utility.createLinkToShare(
             context,
             "tweet/${model.key}",
@@ -103,12 +104,60 @@ class TweetBottomSheet {
                     "https://play-lh.googleusercontent.com/e66XMuvW5hZ7HnFf8R_lcA3TFgkxm0SuyaMsBs3KENijNHZlogUAjxeu9COqsejV5w=s180-rw")),
           );
 
-          Navigator.pop(context);
           Utility.copyToClipBoard(
               scaffoldKey: scaffoldKey,
               text: uri.toString(),
               message: "Tweet link copy to clipboard");
         }),
+        isMyTweet
+            ? _widgetBottomSheetRow(
+                context,
+                AppIcon.delete,
+                text: 'Delete Tweet',
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text("Delete"),
+                      content: Text('Do you want to delete this Tweet?'),
+                      actions: [
+                        // ignore: deprecated_member_use
+                        FlatButton(
+                          textColor: Colors.black,
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                          child: Text('Cancel'),
+                        ),
+                        // ignore: deprecated_member_use
+                        TextButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                              TwitterColor.dodgetBlue,
+                            ),
+                            foregroundColor: MaterialStateProperty.all(
+                              TwitterColor.white,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            _deleteTweet(
+                              context,
+                              type,
+                              model.key,
+                              parentkey: model.parentkey,
+                            );
+                          },
+                          child: Text('Confirm'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                isEnable: true,
+              )
+            : Container(),
         isMyTweet
             ? _widgetBottomSheetRow(
                 context,
@@ -120,22 +169,6 @@ class TweetBottomSheet {
                 AppIcon.unFollow,
                 text: 'Unfollow ${model.user.userName}',
               ),
-        isMyTweet
-            ? _widgetBottomSheetRow(
-                context,
-                AppIcon.delete,
-                text: 'Delete Tweet',
-                onPressed: () {
-                  _deleteTweet(
-                    context,
-                    type,
-                    model.key,
-                    parentkey: model.parentkey,
-                  );
-                },
-                isEnable: true,
-              )
-            : Container(),
         isMyTweet
             ? Container()
             : _widgetBottomSheetRow(
@@ -200,12 +233,62 @@ class TweetBottomSheet {
                 imageUrl: Uri.parse(
                     "https://play-lh.googleusercontent.com/e66XMuvW5hZ7HnFf8R_lcA3TFgkxm0SuyaMsBs3KENijNHZlogUAjxeu9COqsejV5w=s180-rw")),
           );
+
           Navigator.pop(context);
           Utility.copyToClipBoard(
               scaffoldKey: scaffoldKey,
               text: uri.toString(),
               message: "Tweet link copy to clipboard");
         }),
+        isMyTweet
+            ? _widgetBottomSheetRow(
+                context,
+                AppIcon.delete,
+                text: 'Delete Tweet',
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text("Delete"),
+                      content: Text('Do you want to delete this Tweet?'),
+                      actions: [
+                        // ignore: deprecated_member_use
+                        FlatButton(
+                          textColor: Colors.black,
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                          child: Text('Cancel'),
+                        ),
+                        // ignore: deprecated_member_use
+                        TextButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                              TwitterColor.dodgetBlue,
+                            ),
+                            foregroundColor: MaterialStateProperty.all(
+                              TwitterColor.white,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            _deleteTweet(
+                              context,
+                              type,
+                              model.key,
+                              parentkey: model.parentkey,
+                            );
+                          },
+                          child: Text('Confirm'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                isEnable: true,
+              )
+            : Container(),
         isMyTweet
             ? _widgetBottomSheetRow(
                 context,
@@ -217,22 +300,6 @@ class TweetBottomSheet {
                 AppIcon.sadFace,
                 text: 'Not interested in this',
               ),
-        isMyTweet
-            ? _widgetBottomSheetRow(
-                context,
-                AppIcon.delete,
-                text: 'Delete Tweet',
-                onPressed: () {
-                  _deleteTweet(
-                    context,
-                    type,
-                    model.key,
-                    parentkey: model.parentkey,
-                  );
-                },
-                isEnable: true,
-              )
-            : Container(),
         isMyTweet
             ? Container()
             : _widgetBottomSheetRow(
@@ -361,7 +428,7 @@ class TweetBottomSheet {
           AppIcon.retweet,
           isEnable: true,
           text: 'Retweet',
-          onPressed: () {
+          onPressed: () async {
             var state = Provider.of<FeedState>(context, listen: false);
             var authState = Provider.of<AuthState>(context, listen: false);
             var myUser = authState.userModel;
@@ -377,8 +444,15 @@ class TweetBottomSheet {
                 createdAt: DateTime.now().toUtc().toString(),
                 user: myUser,
                 userId: myUser.userId);
-            state.createReTweet(post);
+            state.createTweet(post);
+
             Navigator.pop(context);
+            var sharedPost = await state.fetchTweet(post.childRetwetkey);
+            if (sharedPost.retweetCount == null) {
+              sharedPost.retweetCount = 0;
+            }
+            sharedPost.retweetCount += 1;
+            state.updateTweet(sharedPost);
           },
         ),
         _widgetBottomSheetRow(
@@ -425,10 +499,9 @@ class TweetBottomSheet {
 
   Widget _shareTweet(BuildContext context, FeedModel model, TweetType type) {
     var socialMetaTagParameters = SocialMetaTagParameters(
-        description: model.description ??
-            "${model.user.displayName} posted a tweet on Fwitter.",
-        title: "Tweet on Fwitter app",
-        imageUrl: Uri.parse(
+        description: model.description ?? "",
+        title: "${model.user.displayName} posted a tweet on Fwitter.",
+        imageUrl: Uri.parse(model.user?.profilePic ??
             "https://play-lh.googleusercontent.com/e66XMuvW5hZ7HnFf8R_lcA3TFgkxm0SuyaMsBs3KENijNHZlogUAjxeu9COqsejV5w=s180-rw"));
     return Column(
       children: <Widget>[
@@ -448,6 +521,7 @@ class TweetBottomSheet {
           isEnable: true,
           text: 'Share Link',
           onPressed: () async {
+            Navigator.pop(context);
             var url = Utility.createLinkToShare(
               context,
               "tweet/${model.key}",
@@ -455,7 +529,6 @@ class TweetBottomSheet {
             );
             var uri = await url;
             Utility.share(uri.toString(), subject: "Tweet");
-            Navigator.pop(context);
           },
         ),
         _widgetBottomSheetRow(
@@ -465,8 +538,9 @@ class TweetBottomSheet {
           isEnable: true,
           onPressed: () {
             socialMetaTagParameters = SocialMetaTagParameters(
+                description: model.description ?? "",
                 title: "${model.user.displayName} posted a tweet on Fwitter.",
-                imageUrl: Uri.parse(
+                imageUrl: Uri.parse(model.user?.profilePic ??
                     "https://play-lh.googleusercontent.com/e66XMuvW5hZ7HnFf8R_lcA3TFgkxm0SuyaMsBs3KENijNHZlogUAjxeu9COqsejV5w=s180-rw"));
             Navigator.pop(context);
             Navigator.push(

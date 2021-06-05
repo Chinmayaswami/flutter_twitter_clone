@@ -1,5 +1,7 @@
 import 'package:flutter_twitter_clone/state/profile_state.dart';
+import 'package:flutter_twitter_clone/ui/page/profile/EditProfilePage.dart';
 import 'package:flutter_twitter_clone/ui/page/profile/follow/followerListPage.dart';
+import 'package:flutter_twitter_clone/ui/page/profile/profileImageView.dart';
 import 'package:flutter_twitter_clone/ui/page/profile/qrCode/scanner.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
@@ -154,7 +156,10 @@ class _ProfilePageState extends State<ProfilePage>
                             ),
                             borderRadius: BorderRadius.circular(50),
                             onPressed: () {
-                              Navigator.pushNamed(context, "/ProfileImageView");
+                              Navigator.push(
+                                  context,
+                                  ProfileImageView.getRoute(
+                                      authstate.profileUserModel.profilePic));
                             },
                           ),
                         ),
@@ -214,8 +219,8 @@ class _ProfilePageState extends State<ProfilePage>
                                     BorderRadius.all(Radius.circular(60)),
                                 onPressed: () {
                                   if (isMyProfile) {
-                                    Navigator.pushNamed(
-                                        context, '/EditProfile');
+                                    Navigator.push(
+                                        context, EditProfilePage.getRoute());
                                   } else {
                                     authstate.followUser(
                                       removeFollower: isFollower(),
@@ -317,9 +322,12 @@ class _ProfilePageState extends State<ProfilePage>
       context,
       "profilePage/${widget.profileId}/",
       socialMetaTagParameters: SocialMetaTagParameters(
-          description: user.bio ?? "Checkout ${user.displayName}'s profile",
-          title: "${user.displayName} is on Fwitter app",
-          imageUrl: Uri.parse(user.profilePic)),
+        description: !user.bio.contains("Edit profile")
+            ? user.bio
+            : "Checkout ${user.displayName}'s profile on Fwitter app",
+        title: "${user.displayName} is on Fwitter app",
+        imageUrl: Uri.parse(user.profilePic),
+      ),
     );
   }
 

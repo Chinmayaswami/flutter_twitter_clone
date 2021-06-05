@@ -1,8 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter_clone/helper/utility.dart';
-import 'package:flutter_twitter_clone/ui/theme/theme.dart';
-import 'package:flutter_twitter_clone/widgets/url_text/custom_link_media_info.dart';
 
 class UrlText extends StatelessWidget {
   final String text;
@@ -65,13 +63,13 @@ class UrlText extends StatelessWidget {
         RichText(
           text: TextSpan(children: getTextSpans()),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          child: IntrinsicWidth(
-            stepWidth: context.width,
-            child: CustomLinkMediaInfo(text: text),
-          ),
-        )
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: 0),
+        //   child: IntrinsicWidth(
+        //     stepWidth: context.width,
+        //     child: CustomLinkMediaInfo(text: text),
+        //   ),
+        // )
       ],
     );
   }
