@@ -11,6 +11,7 @@ import 'package:flutter_twitter_clone/ui/theme/theme.dart';
 import 'package:flutter_twitter_clone/widgets/customFlatButton.dart';
 import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
 import 'package:flutter_twitter_clone/widgets/newWidget/customLoader.dart';
+import 'package:flutter_twitter_clone/widgets/newWidget/title_text.dart';
 import 'package:provider/provider.dart';
 
 class Signup extends StatefulWidget {
@@ -57,6 +58,12 @@ class _SignupState extends State<Signup> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            TitleText(
+              'Use University id',
+              fontSize: 15,
+              color: TwitterColor.ceriseRed,
+              fontWeight: FontWeight.w800,
+            ),
             _entryFeild('Name', controller: _nameController),
             _entryFeild('Enter email',
                 controller: _emailController, isEmail: true),

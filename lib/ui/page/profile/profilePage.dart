@@ -1,8 +1,9 @@
 import 'package:flutter_twitter_clone/state/profile_state.dart';
 import 'package:flutter_twitter_clone/ui/page/profile/EditProfilePage.dart';
 import 'package:flutter_twitter_clone/ui/page/profile/follow/followerListPage.dart';
+import 'package:flutter_twitter_clone/ui/page/profile/follow/followingListPage.dart';
 import 'package:flutter_twitter_clone/ui/page/profile/profileImageView.dart';
-import 'package:flutter_twitter_clone/ui/page/profile/qrCode/scanner.dart';
+//import 'package:flutter_twitter_clone/ui/page/profile/qrCode/scanner.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter_clone/helper/enum.dart';
@@ -77,34 +78,34 @@ class _ProfilePageState extends State<ProfilePage>
       stretch: true,
       iconTheme: IconThemeData(color: Colors.white),
       backgroundColor: Colors.transparent,
-      actions: <Widget>[
-        authstate.isbusy
-            ? SizedBox.shrink()
-            : PopupMenuButton<Choice>(
-                onSelected: (d) {
-                  if (d.title == "Share") {
-                    shareProfile(context);
-                  } else if (d.title == "QR code") {
-                    Navigator.push(context,
-                        ScanScreen.getRoute(authstate.profileUserModel));
-                  }
-                },
-                itemBuilder: (BuildContext context) {
-                  return choices.map((Choice choice) {
-                    return PopupMenuItem<Choice>(
-                      value: choice,
-                      child: Text(
-                        choice.title,
-                        style: TextStyles.textStyle14.copyWith(
-                            color: choice.isEnable
-                                ? AppColor.secondary
-                                : AppColor.lightGrey),
-                      ),
-                    );
-                  }).toList();
-                },
-              ),
-      ],
+      //actions: <Widget>[
+      //  authstate.isbusy
+      //      ? SizedBox.shrink()
+      //      : PopupMenuButton<Choice>(
+      //          onSelected: (d) {
+      //            if (d.title == "Share") {
+      //              shareProfile(context);
+      //            } else if (d.title == "QR code") {
+      //              Navigator.push(context,
+      //                  ScanScreen.getRoute(authstate.profileUserModel));
+      //            }
+      //          },
+      //          itemBuilder: (BuildContext context) {
+      //           return choices.map((Choice choice) {
+      //              return PopupMenuItem<Choice>(
+      //                value: choice,
+      //                child: Text(
+      //                  choice.title,
+      //                  style: TextStyles.textStyle14.copyWith(
+      //                      color: choice.isEnable
+      //                          ? AppColor.secondary
+      //                          : AppColor.lightGrey),
+      //                ),
+      //              );
+      //            }).toList();
+      //          },
+      //        ),
+      //],
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: <StretchMode>[
           StretchMode.zoomBackground,
@@ -324,8 +325,8 @@ class _ProfilePageState extends State<ProfilePage>
       socialMetaTagParameters: SocialMetaTagParameters(
         description: !user.bio.contains("Edit profile")
             ? user.bio
-            : "Checkout ${user.displayName}'s profile on Fwitter app",
-        title: "${user.displayName} is on Fwitter app",
+            : "Checkout ${user.displayName}'s profile on SSU Social app",
+        title: "${user.displayName} is on SSU Social app",
         imageUrl: Uri.parse(user.profilePic),
       ),
     );
@@ -375,8 +376,8 @@ class _ProfilePageState extends State<ProfilePage>
                         indicator: TabIndicator(),
                         controller: _tabController,
                         tabs: <Widget>[
-                          Text("Tweets"),
-                          Text("Tweets & replies"),
+                          Text("Column"),
+                          Text("Column Replies"),
                           Text("Media")
                         ],
                       ),
@@ -447,8 +448,8 @@ class _ProfilePageState extends State<ProfilePage>
                 padding: EdgeInsets.only(top: 50, left: 30, right: 30),
                 child: NotifyText(
                   title: isMyProfile
-                      ? 'You haven\'t ${isreply ? 'reply to any Tweet' : isMedia ? 'post any media Tweet yet' : 'post any Tweet yet'}'
-                      : '${authstate.profileUserModel.userName} hasn\'t ${isreply ? 'reply to any Tweet' : isMedia ? 'post any media Tweet yet' : 'post any Tweet yet'}',
+                      ? 'You haven\'t ${isreply ? 'reply to any word' : isMedia ? 'post any media yet' : 'post any words yet'}'
+                      : '${authstate.profileUserModel.userName} hasn\'t ${isreply ? 'reply to any Tweet' : isMedia ? 'post any media yet' : 'post any word yet'}',
                   subTitle: isMyProfile
                       ? 'Tap tweet button to add new'
                       : 'Once he\'ll do, they will be shown up here',
@@ -537,7 +538,7 @@ class UserNameRowWidget extends StatelessWidget {
                 text: user.displayName,
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 24,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -615,22 +616,22 @@ class UserNameRowWidget extends StatelessWidget {
                 width: 10,
                 height: 30,
               ),
-              _tappbleText(context, '${user.getFollower}', ' Followers', () {
-                var state = context.read<ProfileState>();
-                Navigator.push(
-                    context,
-                    FollowerListPage.getRoute(
-                        profile: state.profileUserModel,
-                        userList: state.profileUserModel.followersList));
-              }),
-              SizedBox(width: 40),
-              _tappbleText(context, '${user.getFollowing}', ' Following', () {
+              _tappbleText(context, '${user.getFollowing}', ' Guiders', () {
                 var state = context.read<ProfileState>();
                 Navigator.push(
                     context,
                     FollowerListPage.getRoute(
                         profile: state.profileUserModel,
                         userList: state.profileUserModel.followingList));
+              }),
+              SizedBox(width: 40),
+              _tappbleText(context, '${user.getFollower}', ' Guiding', () {
+               // var state = context.read<ProfileState>();
+               // Navigator.push(
+               //     context,
+               //     FollowerListPage.getRoute(
+               //         profile: state.profileUserModel,
+               //         userList: state.profileUserModel.followersList));
               }),
             ],
           ),

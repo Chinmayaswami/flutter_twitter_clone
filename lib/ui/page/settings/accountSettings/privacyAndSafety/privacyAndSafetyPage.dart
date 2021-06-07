@@ -26,7 +26,7 @@ class PrivacyAndSaftyPage extends StatelessWidget {
           SettingRowWidget(
             "Protect your tweet",
             subtitle:
-                'Only current followers and people you approve in future will be able to see your tweets.',
+                'Only current followers and people you approve in future will be able to see your posts.',
             vPadding: 15,
             showDivider: false,
             visibleSwitch: true,

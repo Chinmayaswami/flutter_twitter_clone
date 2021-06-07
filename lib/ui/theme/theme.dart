@@ -6,7 +6,7 @@ part 'extention.dart';
 
 class AppTheme {
   static final ThemeData apptheme = ThemeData(
-      primarySwatch: Colors.blue,
+      primarySwatch: Colors.red,
       // fontFamily: 'HelveticaNeue',
       backgroundColor: TwitterColor.white,
       accentColor: TwitterColor.dodgetBlue,
@@ -37,7 +37,7 @@ class AppTheme {
         labelPadding: EdgeInsets.symmetric(vertical: 12),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: TwitterColor.dodgetBlue,
+        backgroundColor: TwitterColor.ceriseRed,
       ),
       colorScheme: ColorScheme(
           background: Colors.white,

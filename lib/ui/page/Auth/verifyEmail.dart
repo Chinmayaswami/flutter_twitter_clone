@@ -30,7 +30,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 NotifyText(
                   title: 'Your email address is verified',
                   subTitle:
-                      'You have got your blue tick on your name. Cheers !!',
+                      'You have got your tick on your name. Cheers !!',
                 ),
               ]
             : <Widget>[

@@ -48,12 +48,12 @@ class _WelcomePageState extends State<WelcomePage> {
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width - 80,
-              height: 40,
+              height: 450,
               child: Image.asset('assets/images/icon-480.png'),
             ),
             Spacer(),
             TitleText(
-              'See what\'s happening in the world right now.',
+              'A Social Network only for Sri Sri University',
               fontSize: 25,
             ),
             SizedBox(
@@ -85,9 +85,9 @@ class _WelcomePageState extends State<WelcomePage> {
                     padding: EdgeInsets.symmetric(horizontal: 2, vertical: 10),
                     child: TitleText(
                       ' Log in',
-                      fontSize: 14,
-                      color: TwitterColor.dodgetBlue,
-                      fontWeight: FontWeight.w300,
+                      fontSize: 15,
+                      color: TwitterColor.ceriseRed,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                 )

@@ -136,7 +136,7 @@ class TweetIconsRow extends StatelessWidget {
             customText(Utility.getPostTime2(model.createdAt),
                 style: TextStyles.textStyle14),
             SizedBox(width: 10),
-            customText('Fwitter for Android',
+            customText('Android',
                 style: TextStyle(color: Theme.of(context).primaryColor))
           ],
         ),
@@ -175,7 +175,7 @@ class TweetIconsRow extends StatelessWidget {
                         : SizedBox(width: 5),
                     AnimatedCrossFade(
                       firstChild: SizedBox.shrink(),
-                      secondChild: customText('Retweets',
+                      secondChild: customText('Reposts',
                           style: TextStyles.subtitleStyle),
                       crossFadeState: !isRetweetAvailable
                           ? CrossFadeState.showFirst

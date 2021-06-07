@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+//import 'dart:io';
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_twitter_clone/helper/enum.dart';
 import 'package:flutter_twitter_clone/helper/utility.dart';
 import 'package:flutter_twitter_clone/state/authState.dart';
 import 'package:flutter_twitter_clone/ui/page/Auth/selectAuthMethod.dart';
-import 'package:flutter_twitter_clone/ui/page/common/updateApp.dart';
+//import 'package:flutter_twitter_clone/ui/page/common/updateApp.dart';
 import 'package:flutter_twitter_clone/ui/page/homePage.dart';
 import 'package:flutter_twitter_clone/ui/theme/theme.dart';
 import 'package:package_info/package_info.dart';
@@ -64,13 +64,13 @@ class _SplashPageState extends State<SplashPage> {
             "Redirect devs to update screen can put other devs in confusion");
         return true;
       }
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => UpdateApp(),
-        ),
-      );
-      return false;
+    //  Navigator.pushReplacement(
+    //    context,
+    //    MaterialPageRoute(
+    //      builder: (_) => UpdateApp(),
+    //    ),
+    //  );
+      return true;
     } else {
       return true;
     }
@@ -124,17 +124,17 @@ class _SplashPageState extends State<SplashPage> {
           child: Stack(
             alignment: Alignment.center,
             children: <Widget>[
-              Platform.isIOS
-                  ? CupertinoActivityIndicator(
-                      radius: 35,
-                    )
-                  : CircularProgressIndicator(
-                      strokeWidth: 2,
-                    ),
+             // Platform.isIOS
+             //     ? CupertinoActivityIndicator(
+             //         radius: 350,
+             //       )
+             //     : CircularProgressIndicator(
+             //         strokeWidth: 2,
+             //       ),
               Image.asset(
                 'assets/images/icon-480.png',
-                height: 30,
-                width: 30,
+                height: 50,
+                width: 50,
               )
             ],
           ),

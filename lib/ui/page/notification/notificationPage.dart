@@ -13,7 +13,7 @@ import 'package:flutter_twitter_clone/widgets/customAppBar.dart';
 import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
 import 'package:flutter_twitter_clone/widgets/newWidget/emptyList.dart';
 import 'package:flutter_twitter_clone/widgets/newWidget/title_text.dart';
-import 'package:flutter_twitter_clone/widgets/url_text/customUrlText.dart';
+//import 'package:flutter_twitter_clone/widgets/url_text/customUrlText.dart';
 import 'package:provider/provider.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -142,26 +142,27 @@ class NotificationTile extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            SizedBox(width: 20),
+            //SizedBox(width: 10),
             customIcon(context,
                 icon: AppIcon.heartFill,
                 iconColor: TwitterColor.ceriseRed,
-                istwitterIcon: true,
-                size: 25),
+                istwitterIcon: false,
+                size: 20),
             SizedBox(width: 10),
-            Row(children: avaterList),
+            //Row(children: avaterList),
+            Padding(
+              padding: EdgeInsets.only(left: 10, bottom: 0, top: 7),
+              child: TitleText(
+                '$length people like your post',
+                fontSize: 18,
+                color: Colors.black87,
+                fontWeight: FontWeight.w500,
+              ),
+            )
           ],
         ),
         // names.length > 0 ? Text(names[0]) : SizedBox(),
-        Padding(
-          padding: EdgeInsets.only(left: 60, bottom: 5, top: 5),
-          child: TitleText(
-            '$length people like your Tweet',
-            fontSize: 18,
-            color: Colors.black87,
-            fontWeight: FontWeight.w500,
-          ),
-        )
+        
       ],
     );
     return col;
@@ -213,16 +214,16 @@ class NotificationTile extends StatelessWidget {
               Navigator.push(context, FeedPostDetail.getRoute(model.key));
             },
             title: _userList(context, model.likeList),
-            subtitle: Padding(
-              padding: EdgeInsets.only(left: 60),
-              child: UrlText(
-                text: description,
-                style: TextStyle(
-                  color: AppColor.darkGrey,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
+            //subtitle: Padding(
+            //  padding: EdgeInsets.only(left: 60),
+              //child: UrlText(
+              //  text: description,
+              //  style: TextStyle(
+              //    color: AppColor.darkGrey,
+              //    fontWeight: FontWeight.w400,
+              //  ),
+           //   ),
+          //  ),
           ),
         ),
         Divider(height: 0, thickness: .6)

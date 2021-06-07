@@ -11,7 +11,7 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.6+11
+version: 1.0.0+1
 
 environment:
   sdk: ">=2.10.0 <3.0.0"
@@ -52,15 +52,17 @@ dependencies:
   qr_code_scanner: ^0.3.5
   qr_flutter: ^3.2.0
   rxdart: ^0.25.0
+  
 
 dev_dependencies:
   test:
   flutter_test: 
     sdk: flutter
-  flutter_launcher_icons: "^0.7.3"
   build_runner: ^1.10.11
   json_annotation: ^3.1.1
   json_serializable: ^3.5.1
+  flutter_launcher_icons: ^0.7.0
+  flutter_launcher_name: ^0.0.1
 
 flutter_icons:
   ios: true
@@ -69,6 +71,11 @@ flutter_icons:
   image_path_android: "assets/images/icon-400.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+
+
+flutter_launcher_name:
+  name: "Social"
 
 # The following section is specific to Flutter.
 flutter:

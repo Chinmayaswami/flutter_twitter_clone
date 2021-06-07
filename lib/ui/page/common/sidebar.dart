@@ -9,6 +9,8 @@ import 'package:flutter_twitter_clone/ui/theme/theme.dart';
 import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
 import 'package:flutter_twitter_clone/widgets/url_text/customUrlText.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class SidebarMenu extends StatefulWidget {
   const SidebarMenu({Key key, this.scaffoldKey}) : super(key: key);
@@ -41,8 +43,8 @@ class _SidebarMenuState extends State<SidebarMenu> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              height: 56,
-              width: 56,
+              height: 106,
+              width: 106,
               margin: EdgeInsets.only(left: 17, top: 10),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white, width: 2),
@@ -65,7 +67,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   UrlText(
                     text: state.userModel.displayName ?? "",
                     style: TextStyles.onPrimaryTitleText
-                        .copyWith(color: Colors.black, fontSize: 20),
+                        .copyWith(color: Colors.black, fontSize: 22),
                   ),
                   SizedBox(
                     width: 3,
@@ -87,10 +89,10 @@ class _SidebarMenuState extends State<SidebarMenu> {
                 style: TextStyles.onPrimarySubTitleText
                     .copyWith(color: Colors.black54, fontSize: 15),
               ),
-              trailing: customIcon(context,
-                  icon: AppIcon.arrowDown,
-                  iconColor: AppColor.primary,
-                  paddingIcon: 20),
+              //trailing: customIcon(context,
+                //  icon: AppIcon.arrowDown,
+                //  iconColor: AppColor.primary,
+                //  paddingIcon: 20),
             ),
             Container(
               alignment: Alignment.center,
@@ -99,14 +101,15 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   SizedBox(
                     width: 17,
                   ),
-                  _tappbleText(context, '${state.userModel.getFollower}',
-                      ' Followers', 'FollowerListPage'),
-                  SizedBox(width: 10),
                   _tappbleText(context, '${state.userModel.getFollowing}',
-                      ' Following', 'FollowingListPage'),
+                      ' Guiders', 'FollowingListPage' ),
+                  SizedBox(width: 10),
+                  _tappbleText(context, '${state.userModel.getFollower}',
+                      ' Guiding', 'FollowerListPage' ),
                 ],
               ),
             ),
+            SizedBox(height: 10),
           ],
         ),
       );
@@ -172,7 +175,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
       title: customText(
         title,
         style: TextStyle(
-          fontSize: 20,
+          fontSize: 18,
           color: isEnable ? AppColor.secondary : AppColor.lightGrey,
         ),
       ),
@@ -193,11 +196,21 @@ class _SidebarMenuState extends State<SidebarMenu> {
                 width: 10,
                 height: 45,
               ),
-              customIcon(context,
-                  icon: AppIcon.bulbOn,
-                  istwitterIcon: true,
-                  size: 25,
-                  iconColor: TwitterColor.dodgetBlue),
+
+              TextButton(
+                onPressed: () => launch('https://chinmayaswami.github.io/indigo/'), 
+                child:customIcon(context,
+                 icon: AppIcon.twitterAds,
+                 istwitterIcon: true,
+                 size: 25,
+                 iconColor: TwitterColor.dodgetBlue),
+                ),
+
+              //customIcon(context,
+              //    icon: AppIcon.bulbOn,
+              //    istwitterIcon: true,
+              //    size: 25,
+              //    iconColor: TwitterColor.dodgetBlue),
               Spacer(),
               TextButton(
                 onPressed: () {
@@ -249,7 +262,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   ),
                   Divider(),
                   _menuListRowButton('Profile',
-                      icon: AppIcon.profile, isEnable: true, onPressed: () {
+                      icon: AppIcon.profile, isEnable: false, onPressed: () {
                     var state = context.read<AuthState>();
                     Navigator.push(
                         context, ProfilePage.getRoute(profileId: state.userId));
@@ -257,9 +270,9 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   _menuListRowButton('Lists', icon: AppIcon.lists),
                   _menuListRowButton('Bookmark', icon: AppIcon.bookmark),
                   _menuListRowButton('Moments', icon: AppIcon.moments),
-                  _menuListRowButton('Fwitter ads', icon: AppIcon.twitterAds),
+                  _menuListRowButton('Ads', icon: AppIcon.twitterAds),
                   Divider(),
-                  _menuListRowButton('Settings and privacy', isEnable: true,
+                  _menuListRowButton('Settings and privacy', isEnable: false,
                       onPressed: () {
                     _navigateTo('SettingsAndPrivacyPage');
                   }),

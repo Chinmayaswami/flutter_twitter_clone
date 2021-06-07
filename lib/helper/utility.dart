@@ -241,7 +241,7 @@ class Utility {
         uriPrefix: 'https://fwitterdev.page.link',
         link: Uri.parse('https://twitter.com/$id'),
         androidParameters: AndroidParameters(
-          packageName: 'com.thealphamerc.flutter_twitter_clone_dev',
+          packageName: 'com.chinmayaswami.ssu_social',
           minimumVersion: 0,
         ),
         dynamicLinkParametersOptions: DynamicLinkParametersOptions(

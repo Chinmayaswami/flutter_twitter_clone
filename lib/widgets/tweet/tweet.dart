@@ -38,7 +38,7 @@ class Tweet extends StatelessWidget {
       Utility.copyToClipBoard(
           scaffoldKey: scaffoldKey,
           text: model.description ?? "",
-          message: "Tweet copy to clipboard");
+          message: "Post copied to clipboard");
     }
   }
 
@@ -182,7 +182,7 @@ class _TweetBody extends StatelessWidget {
             child: CircularImage(path: model.user.profilePic),
           ),
         ),
-        SizedBox(width: 20),
+        SizedBox(width: 15),
         Container(
           width: context.width - 80,
           child: Column(
@@ -199,7 +199,7 @@ class _TweetBody extends StatelessWidget {
                           constraints: BoxConstraints(
                               minWidth: 0, maxWidth: context.width * .5),
                           child: TitleText(model.user.displayName,
-                              fontSize: 16,
+                              fontSize: 15.5,
                               fontWeight: FontWeight.w800,
                               overflow: TextOverflow.ellipsis),
                         ),

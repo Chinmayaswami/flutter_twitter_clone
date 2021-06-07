@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             create: (_) => NotificationState()),
       ],
       child: MaterialApp(
-        title: 'Fwitter',
+        title: 'SSU Social',
         theme: AppTheme.apptheme.copyWith(
           textTheme: GoogleFonts.muliTextTheme(
             Theme.of(context).textTheme,
@@ -49,3 +49,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+

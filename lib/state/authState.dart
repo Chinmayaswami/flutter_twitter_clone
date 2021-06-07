@@ -24,7 +24,13 @@ class AuthState extends AppState {
   String userId;
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'profile',
+      'email',
+      'openid',
+    ],
+  );
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
   dabase.Query _profileQuery;
   // List<UserModel> _profileUserModelList;

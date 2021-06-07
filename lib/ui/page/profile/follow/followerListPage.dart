@@ -23,12 +23,12 @@ class FollowerListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UsersListPage(
-      pageTitle: 'Followers',
+      pageTitle: 'Guiders',
       userIdsList: userList,
       appBarIcon: AppIcon.follow,
-      emptyScreenText: '${profile?.userName} doesn\'t have any followers',
+      emptyScreenText: '${profile?.userName} doesn\'t have any guiders',
       emptyScreenSubTileText:
-          'When someone follow them, they\'ll be listed here.',
+          'When he follows someone, they\'ll be listed here.',
     );
   }
 }

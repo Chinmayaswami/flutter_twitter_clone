@@ -17,7 +17,7 @@ class TwitterColor {
 }
 
 class AppColor {
-  static final Color primary = Color(0xff1DA1F2);
+  static final Color primary = Color(0xfff0d54f);
   static final Color secondary = Color(0xff14171A);
   static final Color darkGrey = Color(0xff1657786);
   static final Color lightGrey = Color(0xffAAB8C2);
@@ -25,3 +25,6 @@ class AppColor {
   static final Color extraExtraLightGrey = Color(0xfF5F8FA);
   static final Color white = Color(0xFFffffff);
 }
+
+//a00000 red
+//f0d54f golden

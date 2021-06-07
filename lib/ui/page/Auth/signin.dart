@@ -6,6 +6,7 @@ import 'package:flutter_twitter_clone/ui/theme/theme.dart';
 import 'package:flutter_twitter_clone/widgets/customFlatButton.dart';
 import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
 import 'package:flutter_twitter_clone/widgets/newWidget/customLoader.dart';
+import 'package:flutter_twitter_clone/widgets/newWidget/title_text.dart';
 import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
@@ -44,7 +45,14 @@ class _SignInState extends State<SignIn> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 150),
+            SizedBox(height: 40),
+            TitleText(
+              'Use University id',
+              fontSize: 15,
+              color: TwitterColor.ceriseRed,
+              fontWeight: FontWeight.w800,
+            ),
+            SizedBox(height: 30),
             _entryFeild('Enter email', controller: _emailController),
             _entryFeild('Enter password',
                 controller: _passwordController, isPassword: true),

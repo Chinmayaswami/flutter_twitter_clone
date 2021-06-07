@@ -91,15 +91,15 @@ class TweetBottomSheet {
           ),
         ),
         _widgetBottomSheetRow(context, AppIcon.link,
-            text: 'Copy link to tweet', isEnable: true, onPressed: () async {
+            text: 'Copy link to post', isEnable: false, onPressed: () async {
           Navigator.pop(context);
           var uri = await Utility.createLinkToShare(
             context,
             "tweet/${model.key}",
             socialMetaTagParameters: SocialMetaTagParameters(
                 description: model.description ??
-                    "${model.user.displayName} posted a tweet on Fwitter.",
-                title: "Tweet on Fwitter app",
+                    "${model.user.displayName} posted a column on SSU Social.",
+                title: "Post on SSU Social app",
                 imageUrl: Uri.parse(
                     "https://play-lh.googleusercontent.com/e66XMuvW5hZ7HnFf8R_lcA3TFgkxm0SuyaMsBs3KENijNHZlogUAjxeu9COqsejV5w=s180-rw")),
           );
@@ -113,7 +113,7 @@ class TweetBottomSheet {
             ? _widgetBottomSheetRow(
                 context,
                 AppIcon.delete,
-                text: 'Delete Tweet',
+                text: 'Delete words',
                 onPressed: () {
                   showDialog(
                     context: context,
@@ -222,14 +222,14 @@ class TweetBottomSheet {
           ),
         ),
         _widgetBottomSheetRow(context, AppIcon.link,
-            text: 'Copy link to tweet', isEnable: true, onPressed: () async {
+            text: 'Copy link to words', isEnable: false, onPressed: () async {
           var uri = await Utility.createLinkToShare(
             context,
             "tweet/${model.key}",
             socialMetaTagParameters: SocialMetaTagParameters(
                 description: model.description ??
                     "${model.user.displayName} posted a tweet on Fwitter.",
-                title: "Tweet on Fwitter app",
+                title: "Post on SSU Social app",
                 imageUrl: Uri.parse(
                     "https://play-lh.googleusercontent.com/e66XMuvW5hZ7HnFf8R_lcA3TFgkxm0SuyaMsBs3KENijNHZlogUAjxeu9COqsejV5w=s180-rw")),
           );
@@ -238,13 +238,13 @@ class TweetBottomSheet {
           Utility.copyToClipBoard(
               scaffoldKey: scaffoldKey,
               text: uri.toString(),
-              message: "Tweet link copy to clipboard");
+              message: "Link copied to clipboard");
         }),
         isMyTweet
             ? _widgetBottomSheetRow(
                 context,
                 AppIcon.delete,
-                text: 'Delete Tweet',
+                text: 'Delete your words',
                 onPressed: () {
                   showDialog(
                     context: context,
@@ -427,7 +427,7 @@ class TweetBottomSheet {
           context,
           AppIcon.retweet,
           isEnable: true,
-          text: 'Retweet',
+          text: 'Repost',
           onPressed: () async {
             var state = Provider.of<FeedState>(context, listen: false);
             var authState = Provider.of<AuthState>(context, listen: false);
@@ -458,7 +458,7 @@ class TweetBottomSheet {
         _widgetBottomSheetRow(
           context,
           AppIcon.edit,
-          text: 'Retweet with comment',
+          text: 'Repost with comment',
           isEnable: true,
           onPressed: () {
             var state = Provider.of<FeedState>(context, listen: false);

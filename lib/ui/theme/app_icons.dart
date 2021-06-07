@@ -52,4 +52,7 @@ class AppIcon {
   static final IconData calender = IconData(0xf203, fontFamily: _kFontFam);
   static final IconData locationPin = IconData(0xf031, fontFamily: _kFontFam);
   static final IconData edit = IconData(0xf112, fontFamily: _kFontFam);
+
+  // my icon didnt work
+  // static final IconData dragon = IconData(0xf35b, fontFamily: _kFontFam);
 }

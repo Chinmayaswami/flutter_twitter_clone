@@ -90,7 +90,7 @@ class _ComposeBottomIconWidgetState extends State<ComposeBottomIconWidget> {
                         children: <Widget>[
                           CircularProgressIndicator(
                             value: getTweetLimit(),
-                            backgroundColor: Colors.grey,
+                            backgroundColor: Colors.amber[200],
                             valueColor:
                                 AlwaysStoppedAnimation<Color>(wordCountColor),
                           ),
