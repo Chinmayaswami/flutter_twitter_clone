@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_twitter_clone/helper/utility.dart';
 import 'package:flutter_twitter_clone/state/authState.dart';
-import 'package:flutter_twitter_clone/ui/page/Auth/widget/googleLoginButton.dart';
+//import 'package:flutter_twitter_clone/ui/page/Auth/widget/googleLoginButton.dart';
 import 'package:flutter_twitter_clone/ui/theme/theme.dart';
 import 'package:flutter_twitter_clone/widgets/customFlatButton.dart';
 import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
@@ -45,7 +45,7 @@ class _SignInState extends State<SignIn> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 40),
+            SizedBox(height: 100),
             TitleText(
               'Use University id',
               fontSize: 15,
@@ -67,10 +67,10 @@ class _SignInState extends State<SignIn> {
             SizedBox(
               height: 30,
             ),
-            GoogleLoginButton(
-              loginCallback: widget.loginCallback,
-              loader: loader,
-            ),
+            //GoogleLoginButton(
+            //  loginCallback: widget.loginCallback,
+            //  loader: loader,
+            //),
             SizedBox(height: 100),
           ],
         ),

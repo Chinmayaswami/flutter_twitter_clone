@@ -6,7 +6,7 @@ import 'package:flutter_twitter_clone/helper/enum.dart';
 import 'package:flutter_twitter_clone/helper/utility.dart';
 import 'package:flutter_twitter_clone/model/user.dart';
 import 'package:flutter_twitter_clone/state/authState.dart';
-import 'package:flutter_twitter_clone/ui/page/Auth/widget/googleLoginButton.dart';
+//import 'package:flutter_twitter_clone/ui/page/Auth/widget/googleLoginButton.dart';
 import 'package:flutter_twitter_clone/ui/theme/theme.dart';
 import 'package:flutter_twitter_clone/widgets/customFlatButton.dart';
 import 'package:flutter_twitter_clone/widgets/customWidgets.dart';
@@ -58,12 +58,14 @@ class _SignupState extends State<Signup> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 50),
             TitleText(
               'Use University id',
               fontSize: 15,
               color: TwitterColor.ceriseRed,
               fontWeight: FontWeight.w800,
             ),
+            SizedBox(height: 20),
             _entryFeild('Name', controller: _nameController),
             _entryFeild('Enter email',
                 controller: _emailController, isEmail: true),
@@ -77,10 +79,10 @@ class _SignupState extends State<Signup> {
             Divider(height: 30),
             SizedBox(height: 30),
             // _googleLoginButton(context),
-            GoogleLoginButton(
-              loginCallback: widget.loginCallback,
-              loader: loader,
-            ),
+            //GoogleLoginButton(
+            //  loginCallback: widget.loginCallback,
+            //  loader: loader,
+            //),
             SizedBox(height: 30),
           ],
         ),
